@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "FlyNix",
+    "slug": "FlyNix",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "flynix",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+    "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.paymentapp",
+      "config": {
+        "usesApplePay": true
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.yourcompany.paymentapp",
+      "permissions": ["INTERNET", "FOREGROUND_SERVICE"],
+      "config": {
+        "googlePay": {
+          "existingPaymentMethodRequired": false,
+          "testEnv": true
+        }
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.your-app.identifier",
+          "enableGooglePay": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
