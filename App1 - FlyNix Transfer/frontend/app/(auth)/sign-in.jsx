@@ -32,8 +32,7 @@ const SignIn = () => {
   const [loginError, setLoginError] = useState(false);
 
   const handleSendOTP = async () => {
-    // Validation améliorée
-    const cleanedPhone = telephone.replace(/\D/g, ""); // Supprime tous les caractères non numériques
+    const cleanedPhone = telephone.replace(/\D/g, ""); 
 
     if (!cleanedPhone || cleanedPhone.length < 8) {
       Alert.alert(
@@ -95,9 +94,8 @@ const SignIn = () => {
     try {
       const response = await authService.signIn(email, password);
       if (response.data.data.token) {
-        // Accède au token correctement
         await AsyncStorage.setItem("authToken", response.data.data.token);
-        router.replace("/(tabs)"); // Redirige vers l'écran d'accueil
+        router.replace("/(tabs)"); 
       }
     } catch (error) {
       setLoginError(true)
@@ -218,7 +216,7 @@ const SignIn = () => {
                 <ErrorModal
                   visible={loginError}
                   onClose={() => setLoginError(false)}
-                  iconName="warning" // Icône d'avertissement
+                  iconName="warning" 
                   title="Identifiants incorrects"
                   message="L'adresse email ou le mot de passe saisi est invalide. Veuillez réessayer."
                   buttonText="Compris"

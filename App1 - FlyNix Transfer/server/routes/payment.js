@@ -2,11 +2,9 @@ const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { v4: uuidv4 } = require('uuid');
 
-// Stockage temporaire simplifié
 
 const pendingTransactions = new Map();
 
-// Validation améliorée
 const validatePayment = (amount) => {
   const amountNum = Number(amount);
   if (isNaN(amountNum)) return { valid: false, error: 'Montant invalide' };
@@ -15,7 +13,6 @@ const validatePayment = (amount) => {
 };
 
 
-// Modifiez la route d'annulation comme suit :
 
 /** 
 router.post('/:id/cancel', async (req, res) => {
@@ -80,7 +77,7 @@ router.post('/create-intent', async (req, res) => {
 
     pendingTransactions.set(paymentIntent.id, {
       intent: paymentIntent,
-      expires_at: Date.now() + 180000 // 1 heure
+      expires_at: Date.now() + 180000 
     });
 
     res.json({

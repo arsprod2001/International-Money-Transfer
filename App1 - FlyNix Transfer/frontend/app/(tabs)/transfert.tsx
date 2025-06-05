@@ -192,7 +192,6 @@ const Transfert = () => {
 
   const handlePress = (value) => {
     setMontant((prevMontant) => prevMontant + value);
-    // Attendre la mise à jour de l'UI avant de faire défiler
     setTimeout(() => {
       if (scrollViewRef.current) {
         scrollViewRef.current.scrollToEnd({ animated: true });
@@ -214,15 +213,14 @@ const Transfert = () => {
   };
 
   const handleSelect = (option) => {
-    setSelected(selected === option ? null : option); // Désélectionne si on clique sur l'option déjà sélectionnée
+    setSelected(selected === option ? null : option);
   };
 
   const handleSelectReception = (option) => {
-    setSelectedReception(selectedReception === option ? null : option); // Désélectionne si on clique sur l'option déjà sélectionnée
+    setSelectedReception(selectedReception === option ? null : option); 
   };
 
 
-  // Filtrer les pays en fonction de la recherche
   useEffect(() => {
     if (searchQuery) {
       const filtered = countryList.filter(country =>
@@ -234,34 +232,28 @@ const Transfert = () => {
     }
   }, [searchQuery]);
 
-  // Ouvrir le modal
   const openModal = () => {
     setModalVisible(true);
   };
 
-  // Ouvrir le modal
   const openModalConfirmation = () => {
     setModalVisibleConfirmation(true);
   };
 
-  // Fermer le modal
   const closeModal = () => {
     setModalVisible(false);
-    setSearchQuery(''); // Réinitialiser la recherche
+    setSearchQuery(''); 
   };
 
-  // Fermer le modal
   const closeModalConfirmation = () => {
     setModalVisibleConfirmation(false);
   };
 
-  // Sélectionner un pays
   const selectCountry = (country) => {
     setSelectedCountry(country);
     closeModal();
   };
 
-  // Rendu d'un élément de la liste
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.currencyItem}
@@ -281,12 +273,10 @@ const Transfert = () => {
       const timeout = 800
       const { data } = await authService.Payment(montantNum, timeout);
 
-      // Vérifier la réponse
       if (!data?.clientSecret) {
         throw new Error('Réponse invalide du serveur');
       }
 
-      // Initialisation Stripe
       const { error: initError } = await initPaymentSheet({
         paymentIntentClientSecret: data.clientSecret,
         merchantDisplayName: "Simulation de Paiement",
@@ -295,7 +285,6 @@ const Transfert = () => {
 
       if (initError) throw initError;
 
-      // Affichage interface
       const { error: paymentError } = await presentPaymentSheet();
       if (paymentError) throw paymentError;
 
@@ -363,9 +352,7 @@ const Transfert = () => {
                 </TouchableOpacity>
 
 
-                {/*Section choix du moyen de reception*/}
 
-                {/* Afficher la sélection du moyen de réception seulement après le choix du pays */}
                 {selectedCountry && (
                   <>
                     {/* Section choix du moyen de réception */}
@@ -397,8 +384,6 @@ const Transfert = () => {
                       )}
                     </View>
 
-                    {/* Bouton Suivant */}
-                    {/* Bouton Suivant - Modifié pour vérifier selected ET selectedReception */}
                     <TouchableOpacity
                       className={`bg-[#a12323] p-3 mt-6 rounded-xl ${!selected || selectedReception === null ? "opacity-50" : ""}`}
                       onPress={nextStep}
@@ -656,7 +641,7 @@ const Transfert = () => {
             {etape === 3 && (
               <KeyboardAwareScrollView
                 enableOnAndroid={true}
-                extraHeight={150} // Ajustez selon besoin
+                extraHeight={150} 
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={{ paddingBottom: 100 }}
               >

@@ -7,7 +7,7 @@ const { query } = require('../config/db');
 const { sendOTP } = require('../services/twilioService');
 const { generateOTP } = require('../utils/otpGenerator');
 
-const otpStore = {}; // Stocke les OTP temporairement
+const otpStore = {}; 
 
 const sendOTPToPhone = async (req, res, next) => {
   const {phone}  = req.body;
@@ -16,14 +16,13 @@ const sendOTPToPhone = async (req, res, next) => {
     return res.status(400).json({ success: false, error: 'Phone number is required' });
   }
 
-  // Vérifie si le numéro de téléphone existe dans la base de données
   const user = await User.findByPhoneNumber(phone);
   if (!user) {
     return res.status(404).json({ success: false, error: 'Phone number not found' });
   }
 
   const otp = generateOTP();
-  otpStore[phone] = otp; // Stocke l'OTP
+  otpStore[phone] = otp;
 
 
   const isSent = await sendOTP(phone, otp);
@@ -44,7 +43,6 @@ const verifyOTP = async (req, res, next) => {
     return res.status(400).json({ success: false, error: 'Phone number and OTP are required' });
   }
 
-  // Vérifie si le numéro de téléphone existe dans la base de données
   const user = await User.findByPhoneNumber(phone);
   if (!user) {
     return res.status(404).json({ success: false, error: 'Phone number not found' });
@@ -52,10 +50,9 @@ const verifyOTP = async (req, res, next) => {
 
   
   if (otpStore[phone] === otp) {
-    delete otpStore[phone]; // Supprime l'OTP après vérification
+    delete otpStore[phone]; 
 
     
-    // Génère un token JWT pour l'utilisateur
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     console.log("reussi");
@@ -129,7 +126,7 @@ const signIn = async (req, res, next) => {
 
 const getUserProfile = async (req, res, next) => {
   try {
-    const userId = req.userId; // Récupéré à partir du middleware d'authentification
+    const userId = req.userId; 
     const result = await query(
       `SELECT prenom, nom, birthday, email, phone, profil_url 
        FROM users 

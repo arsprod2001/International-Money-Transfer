@@ -99,7 +99,7 @@ const SignUp = () => {
 
   const closeModal = () => {
     setModalVisible(false);
-    setSearchQuery(""); // Réinitialiser la recherche
+    setSearchQuery(""); 
   };
 
   const selectCountry = (country) => {
@@ -146,7 +146,7 @@ const SignUp = () => {
 
       if (response.data) {
         console.log("Success", "Account created successfully!");
-        router.push("sign-in"); // Redirige vers l'écran de connexion
+        router.push("sign-in"); 
       }
     } catch (error) {
       Alert.alert("Error", error.message);
@@ -160,7 +160,7 @@ const SignUp = () => {
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           enableOnAndroid={true}
-          extraHeight={150} // Ajustez selon besoin
+          extraHeight={150} 
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingBottom: 100 }}
         >

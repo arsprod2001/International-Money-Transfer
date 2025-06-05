@@ -8,7 +8,7 @@ import * as Sharing from 'expo-sharing'
 const TransactionDetails = () => {
 
   const { transaction } = useLocalSearchParams();
-  const data = JSON.parse(transaction); // On récupère l'objet
+  const data = JSON.parse(transaction); 
 
   const generatePDF = async () => {
     try {

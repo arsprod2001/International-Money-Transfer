@@ -7,31 +7,28 @@ import { BarChart } from 'react-native-chart-kit';
 
 const Dashboard = () => {
 
-  // Dimensions de l'écran pour adapter le graphique
   const screenWidth = Dimensions.get('window').width;
 
-  // Données du graphique
   const data = {
-    labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'], // Jours de la semaine
+    labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'], 
     datasets: [
       {
-        data: [200, 450, 300, 600, 500, 800, 700], // Montants gagnés par jour
+        data: [200, 450, 300, 600, 500, 800, 700], 
       },
     ],
   };
 
-  // Configuration du graphique
   const chartConfig = {
 
     backgroundGradientFrom: '#1f1f1f',
     backgroundGradientTo: '#1f1f1f',
-    fillShadowGradient: '#007bff', // Couleur des barres
+    fillShadowGradient: '#007bff', 
     fillShadowGradientOpacity: 1,
-    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // Couleur des étiquettes
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, 
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     strokeWidth: 2,
     barPercentage: 0.5,
-    decimalPlaces: 0, // Nombre de décimales pour les valeurs
+    decimalPlaces: 0, 
     propsForLabels: {
       fontSize: 12,
     },
@@ -67,14 +64,14 @@ const Dashboard = () => {
 
             <BarChart
               data={data}
-              width={screenWidth - 32} // Largeur du graphique (écran - padding)
+              width={screenWidth - 32} 
               height={220}
               yAxisLabel="€"
-              yAxisSuffix="" // Suffixe pour l'axe Y (optionnel)
+              yAxisSuffix="" 
               chartConfig={chartConfig}
-              verticalLabelRotation={0} // Rotation des étiquettes verticales
-              fromZero // Commence l'axe Y à zéro
-              showBarTops={true} // Affiche les sommets des barres
+              verticalLabelRotation={0} 
+              fromZero 
+              showBarTops={true} 
               style={{ marginLeft: -15 }}
             />
 
@@ -113,7 +110,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-
-// Styles
-const styles = StyleSheet.create({
-});

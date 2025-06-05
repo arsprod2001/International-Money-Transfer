@@ -5,7 +5,7 @@ const { query } = require('../config/db');
 
 const getTransactionHistorique = async (req, res, next) => {
   try {
-    const userId = req.userId; // Récupéré à partir du middleware d'authentification
+    const userId = req.userId; 
     const result = await query(
       `SELECT 
     t.id, 

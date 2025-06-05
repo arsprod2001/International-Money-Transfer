@@ -38,7 +38,7 @@
       [
         "@rnmapbox/maps",
         {
-          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiYXJzcHJvZDAxIiwiYSI6ImNtODZ2bjY0czA4eWkybHB6anNpYjZ6cWIifQ.EcDBm4u2JhghmT4wgQKLqw",
+          "RNMapboxMapsDownloadToken": "",
           "RNMapboxMapsVersion": "11.0.0"
         }
       ],
@@ -63,7 +63,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "99fa8874-ff59-4fcc-8e42-123a13635f6f"
+        "projectId": ""
       }
     }
   }

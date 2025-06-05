@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL || 'http://10.7.143.117:5000/api/v1',
+  baseURL: process.env.EXPO_PUBLIC_API_URL || 'http://10.1.1.1:5000/api/v1',
 });
 
 api.interceptors.request.use(async (config) => {
@@ -13,7 +13,6 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 
-// Gestion centralisée des erreurs
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -28,6 +27,6 @@ export const authService = {
   getProfile: () => api.get('/auth/profile'),
   sendOTPToPhone: (phone) => api.post('/auth/send-otp', { phone }),
   verifyOTP: (phone, otp) => api.post('/auth/verify-otp', { phone, otp }),
-  Payment : (amount, timeout) => api.post('/payment/create-intent',  {amount, timeout}), // 8 secondes timeout)
+  Payment : (amount, timeout) => api.post('/payment/create-intent',  {amount, timeout}), 
   getTransaction: () => api.get('/transaction/historique'),
 };

@@ -13,11 +13,11 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#ffa800", // Couleur du texte et de l'icône actif
-        tabBarInactiveTintColor: "white",  // Couleur du texte et de l'icône inactif
+        tabBarActiveTintColor: "#ffa800", 
+        tabBarInactiveTintColor: "white",  
         tabBarStyle: {
-          backgroundColor: '#1b1b1b', // Couleur de fond de la barre d'onglets
-          borderTopWidth: 0, // Retirer la bordure en haut des onglets (optionnel)
+          backgroundColor: '#1b1b1b', 
+          borderTopWidth: 0, 
         },
         headerShown: false,
       }}
@@ -33,7 +33,7 @@ export default function TabsLayout() {
                 style={{
                   width: 24,
                   height: 24,
-                  tintColor: focused ? "#ffa800" : "white", // Change la couleur de l'icône
+                  tintColor: focused ? "#ffa800" : "white", 
                 }}
               />
             ),

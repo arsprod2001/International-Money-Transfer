@@ -25,7 +25,6 @@ const Parametre = () => {
   const [otpError, setOtpError] = useState("");
   const [emptyOtpError, setEmptyOtpError] = useState("");
 
-  // Fonction pour masquer le numéro de téléphone (affiche seulement les 4 derniers chiffres)
   const maskPhoneNumber = (phone) => {
     if (!phone) return "********";
     const phoneStr = String(phone);
@@ -44,7 +43,6 @@ const Parametre = () => {
     try {
       const response = await authService.verifyOTP(phone, otp);
       if (response.data.success) {
-        // Stocke le token JWT et redirige vers l'écran d'accueil
         await AsyncStorage.setItem("authToken", response.data.token);
         console.log("Success", "OTP verified successfully!");
         router.replace("/(tabs)");
@@ -81,8 +79,8 @@ const Parametre = () => {
 
             <OTPInput
               length={6}
-              value={otp} // Ajoutez cette ligne
-              onChangeText={(code) => setOtp(code)} // Utilisez onChangeText au lieu de onComplete si nécessaire
+              value={otp} 
+              onChangeText={(code) => setOtp(code)} 
               onComplete={(code) => setOtp(code)}
             />
 
@@ -119,21 +117,21 @@ const Parametre = () => {
             <ErrorModal
               visible={otpError}
               onClose={() => setOtpError(false)}
-              iconName="timer-off" // ou "lock-clock" pour une icône plus pertinente
+              iconName="timer-off" 
               title="Code OTP invalide"
               message="Le code de vérification saisi est incorrect ou a expiré. Veuillez demander un nouveau code ou réessayer."
               buttonText="Compris"
-              buttonColor="#FF7043" // Orange un peu plus doux
+              buttonColor="#FF7043" 
             />
 
             <ErrorModal
               visible={emptyOtpError}
               onClose={() => setEmptyOtpError(false)}
-              iconName="sms-failed" // Icône "message échoué"
+              iconName="sms-failed" 
               title="Champ requis"
               message="Veuillez entrer le code de vérification que vous avez reçu par SMS ou email."
               buttonText="Compris"
-              buttonColor="#FFA000" // Orange ambré
+              buttonColor="#FFA000" 
             />
           </View>
         </ScrollView>

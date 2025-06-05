@@ -19,26 +19,22 @@ const RadarMap = () => {
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(require('../../assets/sound/sound.mp3'));
-    soundRef.current = sound; // Stockez l'instance du son dans la référence
+    soundRef.current = sound; 
     soundRef.current.setOnPlaybackStatusUpdate(async (status) => {
       if (status.didJustFinish) {
-        await soundRef.current.replayAsync(); // Rejoue le son automatiquement
+        await soundRef.current.replayAsync(); 
       }
     });
-    await soundRef.current.playAsync(); // Joue le son
+    await soundRef.current.playAsync();n
   }
 
-   // Fonction pour arrêter le son proprement
    const stopSound = async () => {
     if (soundRef.current) {
-      await soundRef.current.stopAsync(); // Arrête le son
-      await soundRef.current.unloadAsync(); // Décharge le son
-      soundRef.current = null; // Réinitialise la référence
+      await soundRef.current.stopAsync();
+      await soundRef.current.unloadAsync(); 
+      soundRef.current = null; 
     }
   };
-
- 
-
 
   
   const radarAnimations = useRef([
@@ -52,7 +48,7 @@ const RadarMap = () => {
   const targetCoordinates = { latitude: 48.8566, longitude: 2.3522 };
 
   const mapViewRef = useRef(null);
-  const timeoutRef = useRef(null); // Référence pour le setTimeout
+  const timeoutRef = useRef(null); 
 
   const startRadar = () => {
     setIsRadarActive(true);
@@ -78,7 +74,6 @@ const RadarMap = () => {
       ).start();
     });
 
-    // Stocker le setTimeout dans une référence
     timeoutRef.current = setTimeout(() => {
       setIsModalVisible(true);
       setIsLineVisible(true);
@@ -107,7 +102,6 @@ const RadarMap = () => {
     setIsLineVisible(false);
     setShowFranceMarker(false);
 
-    // Annuler le setTimeout s'il existe
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -159,8 +153,8 @@ const RadarMap = () => {
           if (newTimer <= 0) {
             clearInterval(timerInterval.current);
             setIsModalVisible(false);
-            setIsLineVisible(false); // Masquer la ligne
-            setShowFranceMarker(false); // Masquer le marqueur
+            setIsLineVisible(false); 
+            setShowFranceMarker(false); 
             stopSound();
           }
           

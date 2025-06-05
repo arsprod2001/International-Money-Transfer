@@ -22,7 +22,6 @@ const ErrorModal = ({
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
-          {/* Icône personnalisable */}
           <View style={styles.iconContainer}>
             <MaterialIcons 
               name={iconName} 
@@ -31,11 +30,9 @@ const ErrorModal = ({
             />
           </View>
           
-          {/* Titre et message personnalisables */}
           <Text style={[styles.title, { color: iconColor }]}>{title}</Text>
           <Text style={styles.message}>{message}</Text>
           
-          {/* Bouton personnalisable */}
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: buttonColor }]}
             onPress={onClose}

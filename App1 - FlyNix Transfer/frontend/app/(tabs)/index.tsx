@@ -11,7 +11,7 @@ import { authService } from "../../services/api";
 
 
 
-const ALPHA_VANTAGE_API_KEY = '293DG6OEUGLB8226';
+const ALPHA_VANTAGE_API_KEY = '';
 
 const countryList = [
   { name: { common: 'France' }, cca2: 'FR', cca3: 'FRA', flag: '🇫🇷', currencies: { EUR: { name: 'Euro', symbol: '€' } } },
@@ -75,7 +75,6 @@ const Home = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await authService.getProfile();
-        // Les informations de l'utilisateur se trouvent dans response.data.data
         setUser(response.data.data);
       } catch (error) {
         console.error("Erreur lors de la récupération du profil utilisateur:", error);
@@ -95,7 +94,6 @@ const Home = () => {
         const response = await authService.getTransaction();
         const data = response.data.data;
 
-        // Tri décroissant par date_creation
         const sorted = data.sort((a, b) => new Date(b.date_creation) - new Date(a.date_creation));
 
         setTransaction(sorted);
@@ -108,7 +106,6 @@ const Home = () => {
     fetchTransaction();
   }, []);
 
-  // Chargement des devises
   useEffect(() => {
     const currencyMap = new Map();
 
@@ -153,7 +150,6 @@ const Home = () => {
     setFilteredCountries(filtered.length > 0 ? filtered : currencies);
   }, [searchQuery, currencies]);
 
-  // Récupération des données historiques
   const fetchHistoricalData = useCallback(async () => {
     try {
       const response = await axios.get(
@@ -183,7 +179,6 @@ const Home = () => {
     }
   }, [fromCurrency, toCurrency]);
 
-  // Récupération du taux actuel
   const fetchLiveRate = useCallback(async () => {
     try {
       const response = await axios.get(
@@ -196,7 +191,6 @@ const Home = () => {
     }
   }, [fromCurrency, toCurrency]);
 
-  // Gestion des mises à jour
   useEffect(() => {
     if (!fromCurrency || !toCurrency) return;
 

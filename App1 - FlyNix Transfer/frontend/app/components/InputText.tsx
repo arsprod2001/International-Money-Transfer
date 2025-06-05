@@ -61,12 +61,10 @@ import {
     useEffect(() => {
       if (isNumber && value) {
         const findCountryByCode = () => {
-          // On vérifie d'abord si le numéro commence par le code déjà sélectionné
           if (selectedCountry && value.startsWith(selectedCountry.code)) {
             return selectedCountry;
           }
           
-          // Sinon, on cherche le pays avec le code le plus long qui correspond
           const sortedCountries = [...countryList].sort((a, b) => b.code.length - a.code.length);
           for (const country of sortedCountries) {
             if (value.startsWith(country.code)) {

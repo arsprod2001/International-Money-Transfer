@@ -25,7 +25,6 @@ const DateInput = ({ Titre, value, onChange }) => {
   const [activePicker, setActivePicker] = useState(null);
   const [availableDays, setAvailableDays] = useState([]);
 
-  // Initialisation depuis la valeur YYYY/MM/DD
   useEffect(() => {
     if (value) {
       const [year, month, day] = value.split('/');
@@ -37,7 +36,6 @@ const DateInput = ({ Titre, value, onChange }) => {
     }
   }, [value]);
 
-  // Mise à jour des jours disponibles
   useEffect(() => {
     if (date.month && date.year) {
       const monthNum = parseInt(date.month);
@@ -47,7 +45,6 @@ const DateInput = ({ Titre, value, onChange }) => {
       const newDays = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString().padStart(2, '0'));
       setAvailableDays(newDays);
       
-      // Correction du jour si invalide
       if (date.day && parseInt(date.day) > daysInMonth) {
         setDate(prev => ({
           ...prev,
@@ -59,7 +56,6 @@ const DateInput = ({ Titre, value, onChange }) => {
     }
   }, [date.month, date.year]);
 
-  // Formatage de la date de sortie YYYY/MM/DD
   useEffect(() => {
     if (date.year && date.month && date.day) {
       const monthNum = parseInt(date.month);
@@ -83,7 +79,6 @@ const DateInput = ({ Titre, value, onChange }) => {
       [type]: item
     };
     
-    // Correction du jour si mois/année changés
     if ((type === 'month' || type === 'year') && newDate.day) {
       const monthNum = parseInt(newDate.month);
       const yearNum = parseInt(newDate.year);
@@ -159,7 +154,6 @@ const DateInput = ({ Titre, value, onChange }) => {
         
         <Text style={styles.separator}>/</Text>
         
-        {/* Jour */}
         <TouchableOpacity 
           style={styles.datePart}
           onPress={() => {

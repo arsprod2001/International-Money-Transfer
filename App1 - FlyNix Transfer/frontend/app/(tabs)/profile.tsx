@@ -25,7 +25,6 @@ const Profile = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await authService.getProfile();
-        // Les informations de l'utilisateur se trouvent dans response.data.data
         setUser(response.data.data);
       } catch (error) {
         console.error("Erreur lors de la récupération du profil utilisateur:", error);
@@ -48,7 +47,7 @@ const Profile = () => {
               {user.profil_url ? (
                 <Image
                   source={{ uri: user.profil_url }}
-                  className="w-40 h-40 rounded-full" // Conservez vos classes existantes
+                  className="w-40 h-40 rounded-full" 
                 />
               ) : (
                 <View className="w-40 h-40 rounded-full bg-gray-500 items-center justify-center">

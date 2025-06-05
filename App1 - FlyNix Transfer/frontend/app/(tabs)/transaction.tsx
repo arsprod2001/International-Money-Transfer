@@ -5,7 +5,6 @@ import { router } from 'expo-router';
 import { authService } from '@/services/api';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 
-// Ajouter en haut du fichier (avant le composant Transaction)
 LocaleConfig.locales.fr = {
   monthNames: [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
@@ -36,7 +35,6 @@ const Transaction = () => {
 
 
 
-  // Formatage des statuts
   const formatStatus = (status) => {
     const statusMap = {
       'completed': 'Complété',
@@ -46,7 +44,6 @@ const Transaction = () => {
     return statusMap[status] || status.replace('_', ' ');
   };
 
-  // Formatage de la date
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
@@ -62,7 +59,7 @@ const Transaction = () => {
       } else {
         setEndDate(selectedDate);
       }
-      applyFilters(); // Appliquer les filtres après sélection
+      applyFilters(); 
     }
   };
 
@@ -99,16 +96,15 @@ const Transaction = () => {
       : [...selectedMethods, method];
 
     setSelectedMethods(newMethods);
-    applyFilters(searchQuery, newMethods, selectedStatus); // Ajouter selectedStatus
+    applyFilters(searchQuery, newMethods, selectedStatus); 
   };
 
-  // Fonction pour basculer le statut sélectionné
   const toggleStatusFilter = (status) => {
     setSelectedStatus(prev => {
       const newStatuses = prev.includes(status)
         ? prev.filter(s => s !== status)
         : [...prev, status];
-      applyFilters(searchQuery, selectedMethods, newStatuses); // Appliquer les filtres
+      applyFilters(searchQuery, selectedMethods, newStatuses); 
       return newStatuses;
     });
   };
@@ -129,7 +125,6 @@ const Transaction = () => {
         let finalStart = startDate;
         let finalEnd = end;
 
-        // Vérifie et corrige l'ordre des dates si nécessaire
         if (new Date(finalStart) > new Date(finalEnd)) {
           [finalStart, finalEnd] = [finalEnd, finalStart];
           setStartDate(finalStart);
@@ -149,7 +144,6 @@ const Transaction = () => {
       const endDate = new Date(end);
       const today = new Date();
 
-      // Si pas de date de fin, utiliser aujourd'hui
       const finalEnd = end || today.toISOString().split('T')[0];
 
       for (let d = new Date(startDate); d <= new Date(finalEnd); d.setDate(d.getDate() + 1)) {
@@ -167,7 +161,7 @@ const Transaction = () => {
     const handleValidate = () => {
       let finalEnd = endDate;
       if (startDate && !endDate) {
-        finalEnd = new Date().toISOString().split('T')[0]; // Date du jour
+        finalEnd = new Date().toISOString().split('T')[0]; 
       }
       onConfirm(startDate, finalEnd);
     };
@@ -234,7 +228,6 @@ const Transaction = () => {
 
 
 
-  // Modifier applyFilters pour inclure le filtre par statut
   const applyFilters = (
     searchText = searchQuery,
     methods = selectedMethods,
@@ -271,7 +264,6 @@ const Transaction = () => {
         const start = dateStart ? new Date(dateStart) : null;
         const end = dateEnd ? new Date(dateEnd) : null;
 
-        // Ajustement des heures pour couvrir toute la journée
         if (start) start.setHours(0, 0, 0, 0);
         if (end) end.setHours(23, 59, 59, 999);
 
@@ -297,7 +289,7 @@ const Transaction = () => {
     setSearchQuery('');
     setSelectedMethods([]);
     setSelectedStatus([]);
-    setDateRange({ start: null, end: null }); // ← Correction ici
+    setDateRange({ start: null, end: null }); 
     setTransaction(originalTransactions);
     setIsFilterModalVisible(false);
   };
@@ -385,7 +377,6 @@ const Transaction = () => {
               </TouchableOpacity>
             </View>
 
-            {/* Replaced FlatList with map function */}
             {transaction.map((item) => (
               <RecentActivitie
                 key={item.id.toString()}
@@ -437,7 +428,7 @@ const Transaction = () => {
                       </View>
                     </View>
 
-                    {/* Nouvelle Section Statut */}
+                    {/* Section Statut */}
                     <View className="mb-6">
                       <Text className="text-gray-400 text-sm mb-3">Statut</Text>
                       <View className="flex-row flex-wrap gap-2">
@@ -524,7 +515,6 @@ const Transaction = () => {
             end: newEnd
           });
 
-          // Applique les filtres avec les nouvelles dates immédiatement
           applyFilters(searchQuery, selectedMethods, selectedStatus, newStart, newEnd);
           setDateModalVisible(false);
         }}

@@ -38,10 +38,10 @@ const User = {
       [telephone]
     );
 
-    console.log('Query result:', result.rows); // Log le résultat de la requête
+    console.log('Query result:', result.rows); 
     return result.rows[0];
   } catch (error) {
-    console.error('Error in findByPhoneNumber:', error); // Log l'erreur
+    console.error('Error in findByPhoneNumber:', error); 
     throw error;
   }
 },

@@ -38,7 +38,6 @@ const Transaction = () => {
                 marginTop: 24,
               }}
             >
-              {/* Conteneur pour l'icône de recherche et le TextInput */}
               <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                 <Image
                   source={require('../../assets/images/searchs.png')}
@@ -49,18 +48,17 @@ const Transaction = () => {
                     flex: 1,
                     fontSize: 18,
                     color: 'white',
-                    minWidth: 100, // Largeur minimale pour éviter que le TextInput ne disparaisse
+                    minWidth: 100, 
                   }}
                   placeholder="Montant à convertir"
                   placeholderTextColor="#999"
                 />
               </View>
 
-              {/* Image de droite (panel.png) */}
               <TouchableOpacity>
                 <Image
                   source={require('../../assets/images/panel.png')}
-                  style={{ width: 25, height: 25, marginLeft: 10 }} // Marge à gauche pour l'espace
+                  style={{ width: 25, height: 25, marginLeft: 10 }} 
                 />
               </TouchableOpacity>
             </View>

@@ -72,7 +72,6 @@ const SuiviTransaction = () => {
                   </View>
                 )}
 
-                {/* Ligne de progression entre les étapes */}
                 {index < steps.length - 1 && (
                   <View
                     style={[

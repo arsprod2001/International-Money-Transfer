@@ -83,7 +83,6 @@ const profileEdition = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await authService.getProfile();
-        // Les informations de l'utilisateur se trouvent dans response.data.data
         setUser(response.data.data);
       } catch (error) {
         console.error(
@@ -103,7 +102,7 @@ const profileEdition = () => {
   
     const closeModal = () => {
       setModalVisible(false);
-      setSearchQuery(""); // Réinitialiser la recherche
+      setSearchQuery(""); 
     };
   
     const selectCountry = (country) => {
@@ -141,7 +140,7 @@ const profileEdition = () => {
         <ScrollView>
           <KeyboardAwareScrollView
             enableOnAndroid={true}
-            extraHeight={150} // Ajustez selon besoin
+            extraHeight={150}
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={{ paddingBottom: 100 }}
           >
